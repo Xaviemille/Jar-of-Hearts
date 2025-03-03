@@ -5,11 +5,11 @@ function submitMessage() {
     const author = document.getElementById('authorInput').value || 'Anonymous';
 
     if (!message.trim()) {
-        alert('Please enter a message.');
+        alert("Please enter a message.");
         return;
     }
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwpba7FBQXjdx2lT_as17AF_q7qZqukSwR5yw1b_OtOXSPc5KS4Bf6tej2FKoixdcjtBQ/exec'; // Replace with your deployment URL
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwphJ-LTAde4lg15RBo5-lEGXmSymdGApmXhGBz4Q1CIdZuZ1NosIlrh8bBBQay660DhA/exec'; // Replace this
     const formData = { message, author };
 
     fetch(scriptURL, {
@@ -19,27 +19,22 @@ function submitMessage() {
         },
         body: JSON.stringify(formData)
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
+    .then(response => response.json()) // Parse JSON correctly
     .then(data => {
-        if (data.status === 'Success') {
-            alert('Message submitted successfully!');
+        if (data.status === "Success") {
+            alert("Message submitted successfully!");
             document.getElementById('messageInput').value = '';
             document.getElementById('authorInput').value = '';
-            // Optionally, reload messages or update the UI
         } else {
-            alert(`Error: ${data.message}`);
+            alert("Error: " + data.message);
         }
     })
     .catch(error => {
         console.error('Error!', error);
-        alert('There was an error submitting your message.');
+        alert("There was an error submitting your message.");
     });
 }
+
 
 
 function loadMessages() {
