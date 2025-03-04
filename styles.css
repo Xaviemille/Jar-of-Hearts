@@ -1,27 +1,113 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #fff8f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
     text-align: center;
-    background-color: #f8f9fa;
 }
 
-.message-card {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 10px auto;
+h1 {
+    color: #b85750;
+    font-size: 2.5rem;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: #6b3e3e;
+    margin-bottom: 20px;
+}
+
+.message-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Form Styling */
+.form-container {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+textarea, input {
     width: 80%;
-    max-width: 400px;
-    animation: floatCard 0.5s ease-in-out;
+    max-width: 500px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #b85750;
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
-@keyframes floatCard {
-    from {
-        transform: translateY(10px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+button {
+    background-color: #b85750;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #953f3a;
+}
+
+/* Heart-shaped message cards */
+.message-card {
+    background-color: #ffebeb;
+    border-radius: 50% 50% 45% 45%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    margin: 10px;
+    padding: 20px;
+    width: 200px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transform: rotate(calc(-3deg + 6deg * var(--random)));
+    transition: transform 0.2s;
+    border-left: 5px solid #b85750;
+    position: relative;
+}
+
+.message-card:hover {
+    transform: scale(1.05) rotate(calc(-3deg + 6deg * var(--random)));
+}
+
+.message-content {
+    font-size: 14px;
+    color: #5a2d2d;
+    text-align: center;
+}
+
+.message-author {
+    font-size: 12px;
+    color: #8b5e5e;
+    margin-top: 10px;
+    text-align: right;
+}
+
+/* Social Media Share Buttons */
+.share-buttons {
+    margin-top: 10px;
+}
+.share-buttons button {
+    background-color: #6b3e3e;
+    padding: 5px 10px;
+    font-size: 0.9rem;
 }
