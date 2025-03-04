@@ -9,7 +9,7 @@ document.getElementById("messageForm").addEventListener("submit", function(event
         return;
     }
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbwo1cZv9Tc8kfwrSD96jCnnftMetOOgYiawHEZ8Hh4SzElwmHzF-wEiumBX9MnOicEk/exec"; // Replace with your /exec URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbz8IWCVw5pAuBHsoPN4YWy7pG-K65pbffEK_G0HFpV2up-NdBtlAOC4oboWo-YoFfye/exec"; // Replace with your actual /exec URL
 
     const formData = new URLSearchParams();
     formData.append("Message", message);
@@ -40,7 +40,7 @@ function fetchMessages() {
     const messagesContainer = document.getElementById("messagesContainer");
     messagesContainer.innerHTML = "<p>Loading messages...</p>";
 
-    const scriptURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTj09nAVTJGfEdy3Ao563cgex8G8ETZXf6GpJOwfmCes8VshtIwrEaZVpaA5kqzXlUHJcYIlNbwSZl9/pubhtml"; // Replace with your /exec URL
+    const scriptURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTj09nAVTJGfEdy3Ao563cgex8G8ETZXf6GpJOwfmCes8VshtIwrEaZVpaA5kqzXlUHJcYIlNbwSZl9/pubhtml"; // Replace with your actual /exec URL
 
     fetch(scriptURL)
         .then(response => response.json())
@@ -63,10 +63,6 @@ function fetchMessages() {
             messagesContainer.innerHTML = "<p>Failed to load messages.</p>";
         });
 }
-
-// Call fetchMessages() when the page loads
-window.onload = fetchMessages;
-
 
 // Load messages when the page loads
 window.onload = fetchMessages;
