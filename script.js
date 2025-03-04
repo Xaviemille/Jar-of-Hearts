@@ -9,17 +9,14 @@ function submitMessage() {
         return;
     }
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyFHF3TlOiXYHBT99RjmiBpzVmYu-Imut5tETcacRF5oq583jziA2hT4689MzlXbD8XcA/exec"; // Replace with the new /exec URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxLpAna4-EYtcKBzCBvv6Rn0Ry0TPXTcKiZULtqAYz_umHR0OxpKyUqqTNJuwsmha-DeA/exec"; // Replace with your new /exec URL
 
     fetch(scriptURL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message, author }),
     })
-    .then(response => {
-        if (!response.ok) throw new Error("Network response was not ok");
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
         if (data.status === "Success") {
             alert("Message submitted successfully!");
@@ -31,7 +28,7 @@ function submitMessage() {
     })
     .catch(error => {
         console.error("Error!", error);
-        alert("There was an error submitting your message. Check the console.");
+        alert("There was an error submitting your message. Please check the console.");
     });
 }
 
