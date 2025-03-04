@@ -1,34 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jar of Hearts</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script defer src="script.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Jar of Hearts</h1>
-      <p class="tagline">
-        A jar full of dreams, hopes, and reflections. Write yours today.
-      </p>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Jar of Hearts 💖</h1>
 
-      <!-- Message Submission Form -->
-      <div class="form-container">
-        <textarea
-          id="messageInput"
-          placeholder="Write your message here..."
-        ></textarea>
-        <input
-          type="text"
-          id="authorInput"
-          placeholder="Your name (optional)"
-        />
-        <button onclick="submitMessage()">Submit</button>
-      </div>
+    <!-- Form to Submit Messages -->
+    <form id="messageForm">
+        <input type="text" id="messageInput" placeholder="Write your message..." required>
+        <input type="text" id="authorInput" placeholder="Your name (optional)">
+        <button type="submit">Submit</button>
+    </form>
 
-      <div id="messageContainer" class="message-container"></div>
+    <h2>Messages</h2>
+    <div id="messagesContainer">
+        <p>Loading messages...</p>
     </div>
-  </body>
+
+    <script src="script.js"></script>
+</body>
 </html>
