@@ -9,21 +9,24 @@ function submitMessage() {
         return;
     }
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxLpAna4-EYtcKBzCBvv6Rn0Ry0TPXTcKiZULtqAYz_umHR0OxpKyUqqTNJuwsmha-DeA/exec"; // Replace with your new /exec URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxxpNlbm1r-LolWyG2YajDwJaoo1MuRNR6E09DtllFIqH8Y6fE9V3sKuZ1VGEDWFbH5/exec"; // Replace this
+
+    const formData = new URLSearchParams();
+    formData.append("Message", message);
+    formData.append("Author", author);
 
     fetch(scriptURL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message, author }),
+        body: formData
     })
     .then(response => response.json())
     .then(data => {
-        if (data.status === "Success") {
+        if (data.result === "success") {
             alert("Message submitted successfully!");
             document.getElementById("messageInput").value = "";
             document.getElementById("authorInput").value = "";
         } else {
-            alert("Error: " + data.message);
+            alert("Error: " + data.error);
         }
     })
     .catch(error => {
@@ -34,7 +37,7 @@ function submitMessage() {
 
 
 function loadMessages() {
-    const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTIE0fatBnUXUO6kO4O4z2lW3jy3YNwsLbCHmlF6YCNAajztEG7r7g4LLiHmJoH_7qXOrhBcrYzfBwW/pubhtml';
+    const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTj09nAVTJGfEdy3Ao563cgex8G8ETZXf6GpJOwfmCes8VshtIwrEaZVpaA5kqzXlUHJcYIlNbwSZl9/pubhtml';
     const messageContainer = document.getElementById('messageContainer');
     messageContainer.innerHTML = '';
     
