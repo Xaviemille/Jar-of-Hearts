@@ -9,7 +9,7 @@ document.getElementById("messageForm").addEventListener("submit", function(event
         return;
     }
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyJdUhGryio7v4bVwe5wYfMz2PBN5tKz8aDEF8r68NDee_nwGG6tCudxlUaC74vg7zx/exec"; // Replace with your /exec URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwo1cZv9Tc8kfwrSD96jCnnftMetOOgYiawHEZ8Hh4SzElwmHzF-wEiumBX9MnOicEk/exec"; // Replace with your /exec URL
 
     const formData = new URLSearchParams();
     formData.append("Message", message);
@@ -63,6 +63,10 @@ function fetchMessages() {
             messagesContainer.innerHTML = "<p>Failed to load messages.</p>";
         });
 }
+
+// Call fetchMessages() when the page loads
+window.onload = fetchMessages;
+
 
 // Load messages when the page loads
 window.onload = fetchMessages;
