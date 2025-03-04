@@ -9,14 +9,14 @@ function submitMessage() {
         return;
     }
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyWxjbUlZ21mvBWCnhwPWwxTJqudkFb1oCQC-IYpgV6/dev"; // Replace with your latest deployment URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyr5wZ0PCeu33x3wQkUUb1oDhe2L__tVItK4L7AlljguEzMB_1UBUpe4kwsOmLjqpsYUw/exec"; // Replace this!
 
     fetch(scriptURL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message, author }),
     })
-    .then(response => response.json()) // Parse JSON response
+    .then(response => response.json())
     .then(data => {
         if (data.status === "Success") {
             alert("Message submitted successfully!");
@@ -31,6 +31,7 @@ function submitMessage() {
         alert("There was an error submitting your message. Please check the console.");
     });
 }
+
 
 
 function loadMessages() {
