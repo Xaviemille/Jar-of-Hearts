@@ -1,44 +1,40 @@
 document.addEventListener('DOMContentLoaded', loadMessages);
 
 function submitMessage() {
-    const message = document.getElementById('messageInput').value;
-    const author = document.getElementById('authorInput').value || 'Anonymous';
+    const message = document.getElementById("messageInput").value;
+    const author = document.getElementById("authorInput").value || "Anonymous";
 
     if (!message.trim()) {
         alert("Please enter a message.");
         return;
     }
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwphJ-LTAde4lg15RBo5-lEGXmSymdGApmXhGBz4Q1CIdZuZ1NosIlrh8bBBQay660DhA/exec'; // Replace this
-    const formData = { message, author };
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzsbjkf8nky42SmzQ_4-LtigjI6X6V_jyH5EFrm9Nnd3vi-e2wdU7ao0vJqhQL4re3xQw/exec"; // Replace with your new deployment URL
 
     fetch(scriptURL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message, author }),
     })
-    .then(response => response.json()) // Parse JSON correctly
+    .then(response => response.json()) // Correctly parse the response
     .then(data => {
         if (data.status === "Success") {
             alert("Message submitted successfully!");
-            document.getElementById('messageInput').value = '';
-            document.getElementById('authorInput').value = '';
+            document.getElementById("messageInput").value = "";
+            document.getElementById("authorInput").value = "";
         } else {
             alert("Error: " + data.message);
         }
     })
     .catch(error => {
-        console.error('Error!', error);
+        console.error("Error!", error);
         alert("There was an error submitting your message.");
     });
 }
 
 
-
 function loadMessages() {
-    const sheetURL = 'https://dochttps://docs.google.com/spreadsheets/d/e/2PACX-1vTIE0fatBnUXUO6kO4O4z2lW3jy3YNwsLbCHmlF6YCNAajztEG7r7g4LLiHmJoH_7qXOrhBcrYzfBwW/pubhtmlhttps://docs.google.com/spreadsheets/d/e/2PACX-1vTIE0fatBnUXUO6kO4O4z2lW3jy3YNwsLbCHmlF6YCNAajztEG7r7g4LLiHmJoH_7qXOrhBcrYzfBwW/pubhtmls.google.com/spreadsheets/d/e/2PACX-1vQHUSmyhSiUU7YitaZoEcfePDFEHMJC1IlFX_kKziQpGog0MHKmFMGn5LggcXT40xCk_fYo8BGOGCQj/pubhtmlSHEET_URL';
+    const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTIE0fatBnUXUO6kO4O4z2lW3jy3YNwsLbCHmlF6YCNAajztEG7r7g4LLiHmJoH_7qXOrhBcrYzfBwW/pubhtml';
     const messageContainer = document.getElementById('messageContainer');
     messageContainer.innerHTML = '';
     
