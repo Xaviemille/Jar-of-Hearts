@@ -1,14 +1,98 @@
+/* General Page Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Heading Styling */
+h1 {
+    font-size: 2.5rem;
+    color: #ff5e78;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-top: 30px;
+}
+
+/* Form Styling */
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 30px;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #ff5e78;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #e54b60;
+}
+
+/* Message Container */
+#messagesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Message Cards */
 .message-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: white;
     padding: 15px;
     border-radius: 12px;
     box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 10px auto;
-    width: 80%;
-    max-width: 400px;
+    width: 300px;
+    text-align: left;
+    transition: transform 0.2s;
     animation: floatCard 0.5s ease-in-out;
 }
 
+.message-card:hover {
+    transform: scale(1.05);
+}
+
+/* Message Content */
+.message-card p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #444;
+}
+
+.message-card .date {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+/* Floating Card Effect */
 @keyframes floatCard {
     from {
         transform: translateY(10px);
