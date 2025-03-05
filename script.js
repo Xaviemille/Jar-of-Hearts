@@ -9,7 +9,7 @@ document.getElementById("messageForm").addEventListener("submit", function(event
         return;
     }
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyvH2zj8iqw6Zel1TZoKHViKHray6NXqY3H1IvW3PknVd1ezUD4sTgipe8llkyEwAF_/exec"; // Replace with your actual /exec URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbx4QxfJrK2kPYmagGfBeQOEho0PJoPNjgRC4lpFhcZwcKtR-bGndOZUdJGzWdebzzqy/exec"; // Replace with your actual /exec URL
 
     const formData = new URLSearchParams();
     formData.append("Message", message);
@@ -40,7 +40,7 @@ function fetchMessages() {
     const messagesContainer = document.getElementById("messagesContainer");
     messagesContainer.innerHTML = "<p>Loading messages...</p>";
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyvH2zj8iqw6Zel1TZoKHViKHray6NXqY3H1IvW3PknVd1ezUD4sTgipe8llkyEwAF_/exec"; // Replace with your actual /exec URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbx4QxfJrK2kPYmagGfBeQOEho0PJoPNjgRC4lpFhcZwcKtR-bGndOZUdJGzWdebzzqy/exec"; // Replace with your actual /exec URL
 
     fetch(scriptURL)
         .then(response => response.json())
@@ -53,13 +53,16 @@ function fetchMessages() {
             }
 
             messages.forEach((msg, index) => {
+                const rowIndex = index + 2; // Adjusting for Google Sheets row index
+
                 const messageCard = document.createElement("div");
                 messageCard.classList.add("message-card");
+                messageCard.setAttribute("data-row", rowIndex);
                 messageCard.innerHTML = `
                     <p><strong>${msg.author}</strong> says:</p>
                     <p>"${msg.message}"</p>
                     <p class="date">${new Date(msg.date).toLocaleString()}</p>
-                    <button class="like-button" onclick="likeMessage(${index + 2})">❤️ ${msg.likes}</button>
+                    <button class="like-button" onclick="likeMessage(${rowIndex})">❤️ ${msg.likes}</button>
                 `;
                 messagesContainer.appendChild(messageCard);
             });
@@ -88,7 +91,6 @@ function likeMessage(row) {
         console.error("Error liking message:", error);
     });
 }
-
 
 // Load messages when the page loads
 window.onload = fetchMessages;
