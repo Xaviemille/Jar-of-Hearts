@@ -71,7 +71,7 @@ function fetchMessages() {
 }
 
 function likeMessage(row) {
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyvH2zj8iqw6Zel1TZoKHViKHray6NXqY3H1IvW3PknVd1ezUD4sTgipe8llkyEwAF_/exec"; // Replace with your actual /exec URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbx4QxfJrK2kPYmagGfBeQOEho0PJoPNjgRC4lpFhcZwcKtR-bGndOZUdJGzWdebzzqy/exec"; // Replace with your actual /exec URL
 
     fetch(scriptURL + "?action=like&row=" + row, {
         method: "GET"
