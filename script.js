@@ -77,15 +77,22 @@ function likeMessage(row) {
     const scriptURL = "https://script.google.com/macros/s/AKfycbx4QxfJrK2kPYmagGfBeQOEho0PJoPNjgRC4lpFhcZwcKtR-bGndOZUdJGzWdebzzqy/exec"; // Replace with your actual /exec URL
     const likeButton = document.querySelector(`[data-row='${row}'] .like-button`);
 
+    // Get the current like count from the button text
     let currentLikes = parseInt(likeButton.innerText.replace('❤️ ', '')) || 0;
-    likeButton.innerHTML = `❤️ ${currentLikes + 1}`; // Update instantly on screen
 
+    // ✅ Update the button's like count instantly
+    likeButton.innerHTML = `❤️ ${currentLikes + 1}`;
+
+    // ✅ Send the request to update the like count in Google Sheets
     fetch(scriptURL + "?action=like&row=" + row, {
         method: "GET"
     })
     .then(response => response.json())
     .then(data => {
-        if (data.status !== "success") {
+        if (data.status === "success") {
+            // ✅ Confirm the like count from Google Sheets
+            likeButton.innerHTML = `❤️ ${data.likes}`;
+        } else {
             alert("Error: " + data.message);
         }
     })
@@ -93,6 +100,7 @@ function likeMessage(row) {
         console.error("Error liking message:", error);
     });
 }
+
 
 // Load messages when the page loads
 window.onload = fetchMessages;
