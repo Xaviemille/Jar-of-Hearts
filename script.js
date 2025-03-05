@@ -9,7 +9,7 @@ document.getElementById("messageForm").addEventListener("submit", function(event
         return;
     }
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxu8adlb0iz94Tyx3Ya81rVrKH_NG_xhw13L8SZFmg1O4719e5p6dUU1qTSG0YSWhFG/exec"; // 🔹 Replace this with your actual Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbx4PYUEyIVEQJcFxEBAYlWu3HFoTTzz9vN7MWVA6CvtmVOCejnXsXqYzIW5UQVAD22B/exec"; // Replace with your actual /exec URL
 
     const formData = new URLSearchParams();
     formData.append("Message", message);
@@ -40,13 +40,10 @@ function fetchMessages() {
     const messagesContainer = document.getElementById("messagesContainer");
     messagesContainer.innerHTML = "<p>Loading messages...</p>";
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxu8adlb0iz94Tyx3Ya81rVrKH_NG_xhw13L8SZFmg1O4719e5p6dUU1qTSG0YSWhFG/exec"; // 🔹 Replace this with your actual Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbx4PYUEyIVEQJcFxEBAYlWu3HFoTTzz9vN7MWVA6CvtmVOCejnXsXqYzIW5UQVAD22B/exec"; // Replace with your actual /exec URL
 
     fetch(scriptURL)
-        .then(response => {
-            if (!response.ok) throw new Error("Network response was not ok");
-            return response.json();
-        })
+        .then(response => response.json())
         .then(messages => {
             messagesContainer.innerHTML = ""; // Clear loading text
 
@@ -55,13 +52,14 @@ function fetchMessages() {
                 return;
             }
 
-            messages.forEach(msg => {
+            messages.forEach((msg, index) => {
                 const messageCard = document.createElement("div");
                 messageCard.classList.add("message-card");
                 messageCard.innerHTML = `
                     <p><strong>${msg.author}</strong> says:</p>
                     <p>"${msg.message}"</p>
                     <p class="date">${new Date(msg.date).toLocaleString()}</p>
+                    <button class="like-button" onclick="likeMessage(${index + 2})">❤️ ${msg.likes}</button>
                 `;
                 messagesContainer.appendChild(messageCard);
             });
@@ -70,6 +68,25 @@ function fetchMessages() {
             console.error("Error fetching messages:", error);
             messagesContainer.innerHTML = "<p>Failed to load messages.</p>";
         });
+}
+
+function likeMessage(row) {
+    const scriptURL = "YOUR_GOOGLE_APPS_SCRIPT_EXEC_URL"; // Replace with your actual /exec URL
+
+    fetch(scriptURL + "?row=" + row, {
+        method: "PUT"
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "success") {
+            fetchMessages(); // Reload messages to show updated likes
+        } else {
+            alert("Error: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.error("Error liking message:", error);
+    });
 }
 
 // Load messages when the page loads
