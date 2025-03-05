@@ -9,7 +9,7 @@ document.getElementById("messageForm").addEventListener("submit", function(event
         return;
     }
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbx4PYUEyIVEQJcFxEBAYlWu3HFoTTzz9vN7MWVA6CvtmVOCejnXsXqYzIW5UQVAD22B/exec"; // Replace with your actual /exec URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyvH2zj8iqw6Zel1TZoKHViKHray6NXqY3H1IvW3PknVd1ezUD4sTgipe8llkyEwAF_/exec"; // Replace with your actual /exec URL
 
     const formData = new URLSearchParams();
     formData.append("Message", message);
@@ -40,7 +40,7 @@ function fetchMessages() {
     const messagesContainer = document.getElementById("messagesContainer");
     messagesContainer.innerHTML = "<p>Loading messages...</p>";
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbx4PYUEyIVEQJcFxEBAYlWu3HFoTTzz9vN7MWVA6CvtmVOCejnXsXqYzIW5UQVAD22B/exec"; // Replace with your actual /exec URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyvH2zj8iqw6Zel1TZoKHViKHray6NXqY3H1IvW3PknVd1ezUD4sTgipe8llkyEwAF_/exec"; // Replace with your actual /exec URL
 
     fetch(scriptURL)
         .then(response => response.json())
@@ -73,13 +73,13 @@ function fetchMessages() {
 function likeMessage(row) {
     const scriptURL = "YOUR_GOOGLE_APPS_SCRIPT_EXEC_URL"; // Replace with your actual /exec URL
 
-    fetch(scriptURL + "?row=" + row, {
-        method: "PUT"
+    fetch(scriptURL + "?action=like&row=" + row, {
+        method: "GET"
     })
     .then(response => response.json())
     .then(data => {
         if (data.status === "success") {
-            fetchMessages(); // Reload messages to show updated likes
+            document.querySelector(`[data-row='${row}'] .like-button`).innerHTML = `❤️ ${data.likes}`;
         } else {
             alert("Error: " + data.message);
         }
@@ -88,6 +88,7 @@ function likeMessage(row) {
         console.error("Error liking message:", error);
     });
 }
+
 
 // Load messages when the page loads
 window.onload = fetchMessages;
