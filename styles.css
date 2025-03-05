@@ -103,3 +103,15 @@ button:hover {
         opacity: 1;
     }
 }
+.like-button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #ff5e78;
+    transition: 0.3s;
+}
+
+.like-button:hover {
+    transform: scale(1.1);
+}
