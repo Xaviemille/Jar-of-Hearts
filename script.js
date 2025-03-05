@@ -94,6 +94,5 @@ function likeMessage(row) {
     });
 }
 
-
 // Load messages when the page loads
 window.onload = fetchMessages;
