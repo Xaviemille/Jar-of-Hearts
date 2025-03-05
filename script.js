@@ -9,7 +9,7 @@ document.getElementById("messageForm").addEventListener("submit", function(event
         return;
     }
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbz8IWCVw5pAuBHsoPN4YWy7pG-K65pbffEK_G0HFpV2up-NdBtlAOC4oboWo-YoFfye/exec"; // Replace with your actual /exec URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxu8adlb0iz94Tyx3Ya81rVrKH_NG_xhw13L8SZFmg1O4719e5p6dUU1qTSG0YSWhFG/exec"; // 🔹 Replace this with your actual Web App URL
 
     const formData = new URLSearchParams();
     formData.append("Message", message);
@@ -31,7 +31,7 @@ document.getElementById("messageForm").addEventListener("submit", function(event
         }
     })
     .catch(error => {
-        console.error("Error!", error);
+        console.error("Error submitting message:", error);
         alert("There was an error submitting your message. Please check the console.");
     });
 });
@@ -40,12 +40,20 @@ function fetchMessages() {
     const messagesContainer = document.getElementById("messagesContainer");
     messagesContainer.innerHTML = "<p>Loading messages...</p>";
 
-    const scriptURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTj09nAVTJGfEdy3Ao563cgex8G8ETZXf6GpJOwfmCes8VshtIwrEaZVpaA5kqzXlUHJcYIlNbwSZl9/pubhtml"; // Replace with your actual /exec URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxu8adlb0iz94Tyx3Ya81rVrKH_NG_xhw13L8SZFmg1O4719e5p6dUU1qTSG0YSWhFG/exec"; // 🔹 Replace this with your actual Web App URL
 
     fetch(scriptURL)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error("Network response was not ok");
+            return response.json();
+        })
         .then(messages => {
             messagesContainer.innerHTML = ""; // Clear loading text
+
+            if (messages.length === 0) {
+                messagesContainer.innerHTML = "<p>No messages yet.</p>";
+                return;
+            }
 
             messages.forEach(msg => {
                 const messageCard = document.createElement("div");
