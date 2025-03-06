@@ -1,26 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jar of Hearts</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
 <body>
-    <h1>Jar of Hearts 💖</h1>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showSection('home')">🏠 Home</a></li>
+            <li><a href="#" onclick="showSection('dropHeart')">💌 Drop a Heart</a></li>
+        </ul>
+    </nav>
 
-    <!-- Form to Submit Messages -->
-    <form id="messageForm">
-        <input type="text" id="messageInput" placeholder="Write your message..." required>
-        <input type="text" id="authorInput" placeholder="Your name (optional)">
-        <button type="submit">Submit</button>
-    </form>
+    <section id="home">
+        <h1>Jar of Hearts</h1>
+        <div id="messagesContainer"></div>
+    </section>
 
-    <h2>Messages</h2>
-    <div id="messagesContainer">
-        <p>Loading messages...</p>
-    </div>
+    <section id="dropHeart" style="display: none;">
+        <h1>Drop a Heart 💌</h1>
+        <form id="messageForm">
+            <input type="text" id="messageInput" placeholder="Write your heartfelt message..." required>
+            <input type="text" id="authorInput" placeholder="Your name (optional)">
+            <button type="submit">Submit</button>
+        </form>
+        <h2>Your Messages</h2>
+        <div id="userMessagesContainer"></div>
+    </section>
 
     <script src="script.js"></script>
 </body>
-</html>
