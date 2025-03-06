@@ -1,4 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jar of Hearts</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
+
+    <!-- Navigation Bar -->
     <nav>
         <ul>
             <li><a href="#" onclick="showSection('home')">🏠 Home</a></li>
@@ -6,11 +16,13 @@
         </ul>
     </nav>
 
+    <!-- Home Section (Displays all messages) -->
     <section id="home">
         <h1>Jar of Hearts</h1>
         <div id="messagesContainer"></div>
     </section>
 
+    <!-- Drop a Heart Section (Message Form + User Messages) -->
     <section id="dropHeart" style="display: none;">
         <h1>Drop a Heart 💌</h1>
         <form id="messageForm">
@@ -24,3 +36,4 @@
 
     <script src="script.js"></script>
 </body>
+</html>
