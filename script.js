@@ -48,15 +48,16 @@ document.getElementById("messageForm").addEventListener("submit", function(event
 function fetchMessages() {
     const messagesContainer = document.getElementById("messagesContainer");
     const userMessagesContainer = document.getElementById("userMessagesContainer");
+
     messagesContainer.innerHTML = "<p>Loading messages...</p>";
     userMessagesContainer.innerHTML = "";
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbx4QxfJrK2kPYmagGfBeQOEho0PJoPNjgRC4lpFhcZwcKtR-bGndOZUdJGzWdebzzqy/exec"; // Replace with your actual /exec URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbx4QxfJrK2kPYmagGfBeQOEho0PJoPNjgRC4lpFhcZwcKtR-bGndOZUdJGzWdebzzqy/exec"; // Replace with your actual Web App URL
 
     fetch(scriptURL)
         .then(response => response.json())
         .then(messages => {
-            messagesContainer.innerHTML = ""; // Clear loading text
+            messagesContainer.innerHTML = "";
             userMessagesContainer.innerHTML = "";
 
             if (messages.length === 0) {
@@ -64,10 +65,8 @@ function fetchMessages() {
                 return;
             }
 
-            const authorName = document.getElementById("authorInput").value || "Anonymous";
-
             messages.forEach((msg, index) => {
-                const rowIndex = index + 2; // Adjust for Google Sheets row index
+                const rowIndex = index + 2;
 
                 const messageCard = document.createElement("div");
                 messageCard.classList.add("message-card");
@@ -78,4 +77,24 @@ function fetchMessages() {
                     <p class="date">${new Date(msg.date).toLocaleString()}</p>
                     <button class="like-button" onclick="likeMessage(${rowIndex})">❤️ ${msg.likes}</button>
                 `;
-                messagesCont
+                messagesContainer.appendChild(messageCard);
+            });
+        })
+        .catch(error => {
+            console.error("Error fetching messages:", error);
+            messagesContainer.innerHTML = "<p>Failed to load messages.</p>";
+        });
+}
+
+function showSection(sectionId) {
+    document.querySelectorAll("section").forEach(section => {
+        section.style.display = "none";
+    });
+
+    document.getElementById(sectionId).style.display = "block";
+}
+
+window.onload = () => {
+    showSection('home'); // Show home by default
+    fetchMessages();
+};
